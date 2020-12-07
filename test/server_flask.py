@@ -1,8 +1,5 @@
-import cv2
-import numpy as np
-import json
 from flask import Flask, jsonify, request
-from baseimg.img_b64 import image_to_base64
+from baseimg.img_b64 import base64_to_image
 
 app1 = Flask(__name__)
 @app1.route('/', methods=['POST'])
@@ -10,18 +7,19 @@ def create_task():
     print("Getting parameters.")
     json_data = request.get_json(force=True)
 
-    img_json=json_data['base64']#传过来的json中的base64字段是我们需要的图像base64编码
+    img_b64=json_data['base64']
+    out_json = {'code':'200','msg':'success!','result':""}#feature是你自己处理的结果
 
+    ##### 自己的服务端处理代码
+    img = base64_to_image(img_b64)
 
-    img_local = cv2.imread("qiaoba.jpg")
-    img_local_j = image_to_base64(img_local)
-
-    if img_json == img_local_j:
-        feature_str = 'same base64 string, success.'
+    if not img is None:
+        res_status = 'b64->img, success.'
     else:
-        feature_str = 'some error, fail.'
+        res_status = 'b64->img, fail.'
+    ##### 自己的服务端处理代码
 
-    out_json = {'code':'200','msg':'success!','feature':feature_str}#feature是你自己处理的结果
+    out_json["result"] = res_status
     return jsonify(out_json)
 
 if __name__ == '__main__':
