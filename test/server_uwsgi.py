@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 #coding=utf-8
-import json
 from flask import Flask, jsonify, request
-from baseimg.img_b64 import base64_to_image
 from gevent import pywsgi
+import sys 
+sys.path.append("..")
+from baseimg.img_b64 import base64_to_image
 
 app1 = Flask(__name__)
 @app1.route('/', methods=['POST'])
@@ -11,25 +12,23 @@ def create_task():
     print("Getting json")
     json_data = request.get_json(force=True)
 
-    img_json=json_data['base64']    #传过来的json中的base64字段是我们需要的图像base64编码
+    img_b64=json_data['base64']
+    out_json = {'code':'200','msg':'success!','result':""}#feature是你自己处理的结果
 
-    img_regis = base64_to_image(img_json)
-    img = img_regis[:,:,0:3]
-    out_json = {'code':'200','error_msg':''}
-    if img is None:
-        print("Not a real image.")
-        out_json['isimg']=False
+    ##### 自己的服务端处理代码
+    img = base64_to_image(img_b64)
+
+    if not img is None:
+        res_status = 'b64->img, success.'
     else:
-        out_json['isimg']=True
+        res_status = 'b64->img, fail.'
+    ##### 自己的服务端处理代码
 
-    '''
-    your program
-    '''
+    out_json["result"] = res_status
     return jsonify(out_json)
 
 
 if __name__ == '__main__':
-    server = pywsgi.WSGIServer(('0.0.0.0', 12151), app1)
+    server = pywsgi.WSGIServer(('0.0.0.0', 5000), app1)
     server.serve_forever()
-    #app1.run(use_reloader=False, debug=True, host='127.0.0.1', port=5000, threaded=False)
 
