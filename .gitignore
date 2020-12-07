@@ -1,1 +1,4 @@
 ./results
+baseimg/__pycache__/
+common/__pycache__/
+test/__pycache__/

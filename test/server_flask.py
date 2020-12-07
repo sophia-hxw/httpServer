@@ -1,4 +1,7 @@
 from flask import Flask, jsonify, request
+
+import sys 
+sys.path.append("..")
 from baseimg.img_b64 import base64_to_image
 
 app1 = Flask(__name__)
