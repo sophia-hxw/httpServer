@@ -24,4 +24,6 @@
 - [ ] ini
 - [ ] json
 - [ ] toml
+pip3 install toml
 - [ ] yaml
+pip3 install pyyaml
