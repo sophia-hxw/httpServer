@@ -1,5 +1,4 @@
 
-
 def test_flask_cs():
     import cv2
     from test.http_client import send_request
