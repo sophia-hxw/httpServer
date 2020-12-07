@@ -6,7 +6,7 @@ import requests
 import sys
 sys.path.append("..")
 from baseimg.img_b64 import image_to_base64
-from config.logs import Log
+from common.logs import Log
 
 
 if __name__ == "__main__":
