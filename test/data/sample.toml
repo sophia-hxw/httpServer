@@ -1,0 +1,13 @@
+[sample1]
+
+int_v = 3
+float_v = 1.314
+name = "kitty"
+addres = "192.168.231.191"
+bbox = [1,1,1080,1920]
+
+[sample2]
+
+int_v = 34
+float_v = 5.20
+name = "hello"
