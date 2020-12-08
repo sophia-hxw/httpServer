@@ -21,11 +21,11 @@
 - [ ] log模块  
 
 ## python中的几种参数配置文件
-- [ ] ini
+- [x] ini
     configparser 默认将值以字符串的形式呈现
-- [ ] json
-- [ ] toml
+- [x] json
+- [x] toml
     pip3 install toml
-- [ ] yaml
+- [x] yaml
     pip3 install pyyaml
     需要注意的是，使用 load() 方法会存在一定的安全隐患，如果加载了未知或不信任的 yaml 文件，那么有可能会存在被攻击的风险和网络安全隐患，因为它能够直接调用相应的Python函数来执行为攻击者所需要的命令。
