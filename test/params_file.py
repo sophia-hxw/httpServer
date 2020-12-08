@@ -3,7 +3,6 @@ def config_ini(file_pth, config_block):
     import os
     from configparser import ConfigParser
 
-    # configparser 默认将值以字符串的形式呈现
     dict_params = {}
     if os.path.exists(file_pth):
         cfg = ConfigParser() 
@@ -28,13 +27,6 @@ def config_json(file_pth, config_block):
     return res_params
 
 def config_yaml(file_pth, config_block):
-    """
-    需要注意的是，使用 load() 方法会存在一定的安全隐患，
-    从思科 Talos 的这份报告中我们可以看到，如果加载了未
-    知或不信任的 yaml 文件，那么有可能会存在被攻击的风险
-    和网络安全隐患，因为它能够直接调用相应的 Python 函数
-    来执行为攻击者所需要的命令
-    """
     import os
     import yaml
 
