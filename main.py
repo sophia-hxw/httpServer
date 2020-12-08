@@ -12,7 +12,7 @@ def test_flask_cs():
 
 # 测试四种不同形式的python配置文件
 def test_params_file():
-    from test.params_file import config_ini,config_json,config_toml,config_yaml
+    from common.params_file import config_ini,config_json,config_toml,config_yaml
 
     ifile_pth = "./data/params_file/sample.ini"
     jfile_pth = "./data/params_file/sample.json"
